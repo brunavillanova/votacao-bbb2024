@@ -1,5 +1,5 @@
-# Use uma imagem base com Node.js
-FROM node:14
+# Etapa 1: Construção do aplicativo
+FROM node:14 AS build-stage
 
 # Crie um diretório de trabalho
 WORKDIR /app
@@ -16,8 +16,10 @@ COPY . .
 # Construa o aplicativo
 RUN npm run build
 
-# Use uma imagem base com Nginx para servir a aplicação
+# Etapa 2: Servir a aplicação com Nginx
 FROM nginx:alpine
+
+# Copie os arquivos da etapa de construção
 COPY --from=build-stage /app/build /usr/share/nginx/html
 
 # Exponha a porta usada pelo Nginx
