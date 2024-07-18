@@ -39,8 +39,8 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          ls -la # Adicione este comando para listar os arquivos e garantir que o Dockerfile está presente
           docker build -t yourusername/yourapp:${{ github.sha }} .
+          docker push yourusername/yourapp:${{ github.sha }}
 
       - name: Deploy to server
         uses: appleboy/ssh-action@v0.1.3
