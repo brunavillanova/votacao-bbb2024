@@ -31,8 +31,8 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          docker build -t yourusername/yourapp:${{ github.sha }} .
-          docker push yourusername/yourapp:${{ github.sha }}
+          docker build -t brunavillanova1/myapp:${{ github.sha }} .
+          docker push brunavillanova1/myapp:${{ github.sha }}
 
       - name: Deploy to server
         uses: appleboy/ssh-action@v0.1.3
@@ -43,10 +43,10 @@ jobs:
           port: ${{ secrets.SERVER_PORT }}
           passphrase: ${{ secrets.SERVER_SSH_PASSPHRASE }}
           script: |
-            docker pull yourusername/yourapp:${{ github.sha }}
+            docker pull brunavillanova1/myapp:${{ github.sha }}
             docker stop app || true
             docker rm app || true
-            docker run -d --name app -p 80:80 yourusername/yourapp:${{ github.sha }}
+            docker run -d --name app -p 80:80 brunavillanova1/myapp:${{ github.sha }}
           timeout: 60s
 
       - name: Notify Prometheus
@@ -62,5 +62,3 @@ jobs:
               "description": "Deploy realizado com sucesso no servidor"
             }
           }'
-
-          
