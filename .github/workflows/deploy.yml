@@ -23,16 +23,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # - name: Run tests
-      #   run: npm test
-
       - name: Build project
         run: npm run build
-
-      - name: Debug Docker Credentials
-        run: |
-          echo "DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}"
-          echo "DOCKER_PASSWORD: [REDACTED]"
 
       - name: Login to Docker Hub
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
@@ -66,5 +58,4 @@ jobs:
             "annotations": {
               "summary": "Deploy realizado com sucesso",
               "description": "Deploy realizado com sucesso no servidor"
-            }
-          }'
+            }'
