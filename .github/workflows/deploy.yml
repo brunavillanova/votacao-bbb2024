@@ -13,10 +13,10 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: '14'
 
@@ -29,17 +29,9 @@ jobs:
       - name: Login to Docker Hub
         run: |
           echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
-        id: docker_login
-
-      - name: Verify Docker Hub login
-        run: docker info
-        if: steps.docker_login.outcome == 'success'
 
       - name: Build Docker image
         run: docker build -t brunavillanova1/myapp:${{ github.sha }} .
-
-      - name: List Docker images
-        run: docker images
 
       - name: Push Docker image
         run: docker push brunavillanova1/myapp:${{ github.sha }}
@@ -53,11 +45,15 @@ jobs:
           port: ${{ secrets.SERVER_PORT }}
           passphrase: ${{ secrets.SERVER_SSH_PASSPHRASE }}
           script: |
+            echo "Pulling Docker image..."
             docker pull brunavillanova1/myapp:${{ github.sha }}
+            echo "Stopping old container..."
             docker stop app || true
+            echo "Removing old container..."
             docker rm app || true
+            echo "Running new container..."
             docker run -d --name app -p 80:80 brunavillanova1/myapp:${{ github.sha }}
-          timeout: 60s
+          timeout: 120s
 
       - name: Notify Prometheus
         run: |
