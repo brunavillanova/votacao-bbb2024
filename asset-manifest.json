@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/brunavillanova/myapp.git/static/css/main.00682b77.css",
+    "main.js": "/brunavillanova/myapp.git/static/js/main.1af09963.js",
+    "index.html": "/brunavillanova/myapp.git/index.html",
+    "main.00682b77.css.map": "/brunavillanova/myapp.git/static/css/main.00682b77.css.map",
+    "main.1af09963.js.map": "/brunavillanova/myapp.git/static/js/main.1af09963.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.00682b77.css",
+    "static/js/main.1af09963.js"
+  ]
+}
