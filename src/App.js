@@ -174,7 +174,7 @@ const VotingSection = ({ enviarVoto, isLoading, feedback, onCaptchaChange }) => 
 // Componente de opção de votação
 const VotingOption = ({ nome, enviarVoto, isLoading }) => (
   <div className="option" data-name={nome.toLowerCase()}>
-    <img src={nome.toLowerCase() === 'juliette' ? '/juliete.jpg' : `${process.env.PUBLIC_URL}/${nome.toLowerCase()}.jpg`} alt={`Foto de ${nome}`} />
+    <img src={nome.toLowerCase() === 'juliette' ? '/juliette.jpg' : `${process.env.PUBLIC_URL}/${nome.toLowerCase()}.jpg`} alt={`Foto de ${nome}`} />
     <p>{nome}</p>
     <button onClick={() => enviarVoto(nome)} disabled={isLoading}>Votar</button>
   </div>
