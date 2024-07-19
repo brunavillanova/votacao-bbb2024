@@ -53,7 +53,8 @@ jobs:
             docker rm app || true
             echo "Running new container..."
             docker run -d --name app -p 80:80 brunavillanova1/myapp:${{ github.sha }}
-          timeout: 120s
+          timeout: 300s  # Aumentar o tempo limite para 5 minutos
+          debug: true  # Habilitar debugging adicional
 
       - name: Notify Prometheus
         run: |
