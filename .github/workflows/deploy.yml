@@ -31,8 +31,8 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          docker build -t yourusername/yourapp:${{ github.sha }} .
-          docker push yourusername/yourapp:${{ github.sha }}
+          docker build -t brunavillanova1/myapp:${{ github.sha }} .
+          docker push brunavillanova1/myapp:${{ github.sha }}
 
       - name: Deploy to server
         uses: appleboy/ssh-action@v0.1.3
@@ -42,20 +42,7 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           passphrase: ${{ secrets.SERVER_SSH_PASSPHRASE }}
           script: |
-            docker pull yourusername/yourapp:${{ github.sha }}
+            docker pull brunavillanova1/myapp:${{ github.sha }}
             docker stop app || true
             docker rm app || true
-            docker run -d --name app -p 3003:3003 yourusername/yourapp:${{ github.sha }}
-
-      - name: Notify Prometheus
-        run: |
-          curl -X POST http://your_prometheus_server/api/v1/alerts -H "Content-Type: application/json" -d '{
-            "status": "resolved",
-            "labels": {
-              "alertname": "DeployStatus",
-              "severity": "info"
-            },
-            "annotations": {
-              "summary": "Deploy realizado com sucesso",
-              "description": "Deploy realizado com sucesso no servidor"
-            }'
+            docker run -d --name app -p 80:80 brunavillanova1/myapp:${{ github.sha }}
