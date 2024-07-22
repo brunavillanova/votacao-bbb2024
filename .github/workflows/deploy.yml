@@ -47,4 +47,4 @@ jobs:
             docker pull brunavillanova1/myapp:${{ github.sha }}
             docker stop myapp || true
             docker rm myapp || true
-            docker run -d --name myapp -p 80:80 brunavillanova1/myapp:${{ github.sha }}
+            docker run -d --name myapp -p 2222:22 brunavillanova1/myapp:${{ github.sha }}
