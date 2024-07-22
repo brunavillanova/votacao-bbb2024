@@ -31,6 +31,10 @@ jobs:
         run: npm run build
         # Compila e constrói o projeto.
 
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+        # Configura Docker Buildx para builds multi-plataforma.
+
       - name: Build Docker image
         run: docker build -t myapp:${{ github.sha }} .
         # Cria uma imagem Docker do projeto.
