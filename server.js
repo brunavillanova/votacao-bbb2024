@@ -214,10 +214,10 @@ mongoose.connect(process.env.MONGO_URI)
   .catch(err => console.error('Erro de conexão com o MongoDB:', err));
 
 // Servir arquivos estáticos do frontend
-app.use(express.static(path.join(__dirname, '../client/build')));
+app.use(express.static(path.join(__dirname, 'build')));
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
 // Inicia o servidor
