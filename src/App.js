@@ -155,8 +155,8 @@ const VotoEnviadoSection = ({ panorama, resetarVoto }) => (
 // Seção de votação
 const VotingSection = ({ enviarVoto, isLoading, feedback, onCaptchaChange }) => (
   <div>
-    <h1>Voto Único: quem você quer que fique no BBB 24?</h1>
-    <p>Vote para definir quem deve ficar no Big Brother Brasil 2024 no primeiro Paredão da temporada!</p>
+    <h1>Quem você quer que fique no BBB 24?</h1>
+    <p>Vote quantas vezes quiser para definir quem deve ficar no Big Brother Brasil 2024 no primeiro Paredão da temporada!</p>
     <div className="voting-options">
       <p>Vote quantas vezes quiser.</p>
       <VotingOption nome="Beatriz" enviarVoto={enviarVoto} isLoading={isLoading} />
