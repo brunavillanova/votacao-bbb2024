@@ -7,9 +7,9 @@ DOCUMENTAÇÃO DO PROJETO DE VOTAÇÃO
     4. Como Subir uma Cópia do Ambiente Localmente
     5. Autor
 
-Documentação do Projeto
+1 . Documentação do Projeto
+Introdução:
 
-* Introdução:
 Este projeto é um sistema de votação para o Big Brother Brasil (BBB 24), onde os usuários podem votar nos candidatos Beatriz ou Juliette. O sistema utiliza o reCAPTCHA do Google para prevenir votos automáticos e Prometheus para monitoramento de métricas.
 Tecnologias Utilizadas:
 Backend:
@@ -37,7 +37,7 @@ Monitoramento:
 
 Estrutura do Projeto
 
-
+plaintext
 
 BBB24/
 ├── node_modules/
@@ -62,24 +62,27 @@ BBB24/
 ├── prometheus.yml
 └── README.md
 
-Documentação das APIs
+2 . Documentação das APIs
 
-A documentação das APIs também está disponível em:
- [Postman Documentation](https://documenter.getpostman.com/view/32281538/2sA3kSnNty)
-
+A documentação das APIs também está disponível em: https://documenter.getpostman.com/view/32281538/2sA3kSnNty
 Rota para Votar:
 
-    Endpoint: /api/votar
-    Método: POST
-    Descrição: Registra um voto para um candidato.
-    Corpo da Requisição:
+Endpoint: http://localhost:3003/api/votar
+Método: POST
+Descrição: Registra um voto para um candidato.
+
+Corpo da Requisição:
+
+
 
 {
   "nomeCandidato": "Beatriz",
   "captchaToken": "TOKEN_DO_RECAPTCHA"
 }
 
-    Resposta de Sucesso:
+Resposta de Sucesso:
+
+
 
 {
   "success": true,
@@ -91,7 +94,8 @@ Rota para Votar:
   }
 }
 
-    Resposta de Erro:
+Resposta de Erro:
+
 
 
 {
@@ -101,10 +105,11 @@ Rota para Votar:
 
 Rota para Estatísticas de Votos:
 
-    Endpoint: /api/estatisticas
-    Método: GET
-    Descrição: Obtém as estatísticas de votos.
-    Resposta de Sucesso:
+Endpoint: http://localhost:3003/api/estatisticas
+Método: GET
+Descrição: Obtém as estatísticas de votos.
+
+Resposta de Sucesso:
 
 
 {
@@ -119,7 +124,8 @@ Rota para Estatísticas de Votos:
   }
 }
 
-    Resposta de Erro:
+Resposta de Erro:
+
 
 
 {
@@ -129,13 +135,12 @@ Rota para Estatísticas de Votos:
 
 Rota para Métricas:
 
-    Endpoint: /metrics
-    Método: GET
-    Descrição: Exibe as métricas do Prometheus.
-
+Endpoint: http://localhost:9090/metrics
+Método: GET
+Descrição: Exibe as métricas do Prometheus.
 Documentação de Arquitetura
+Arquitetura do Sistema:
 
-* Arquitetura do Sistema:
 O sistema de votação consiste em um frontend React que interage com um backend Node.js e Express. O backend se comunica com um banco de dados MongoDB para armazenar votos e utiliza o Prometheus para monitoramento de métricas.
 Componentes Principais
 Frontend:
@@ -172,8 +177,6 @@ Diagrama de Arquitetura:
     |                              v
     +-----------------> reCAPTCHA Validation
 
-
-
 Como Subir uma Cópia do Ambiente Localmente
 Pré-requisitos
 
@@ -191,8 +194,7 @@ git clone <url-do-repositorio>
 cd <nome-do-repositorio>
 
     Configuração do Backend:
-
-    Crie um arquivo .env no diretório raiz com as seguintes variáveis:
+        Crie um arquivo .env no diretório raiz com as seguintes variáveis:
 
     plaintext
 
@@ -205,36 +207,37 @@ cd <nome-do-repositorio>
     Instale as dependências do backend:
 
 
+
 npm install
 
     Configuração do Frontend:
-
-    Navegue até o diretório client e crie um arquivo .env com as mesmas variáveis do backend. Instale as dependências do frontend:
+        Navegue até o diretório client e crie um arquivo .env com as mesmas variáveis do backend.
+        Instale as dependências do frontend:
 
 
 
 cd client
 npm install
 
-    Configuração do Prometheus:
+Configuração do Prometheus:
 
     Crie um arquivo prometheus.yml com a seguinte configuração:
 
+plaintext
 
+    global:
+      scrape_interval: 15s
+      evaluation_interval: 15s
 
-global:
-  scrape_interval: 15s
-  evaluation_interval: 15s
+    scrape_configs:
+      - job_name: "prometheus"
+        static_configs:
+          - targets: ["localhost:9090"]
 
-scrape_configs:
-  - job_name: "prometheus"
-    static_configs:
-      - targets: ["localhost:9090"]
-
-  - job_name: "node_app"
-    static_configs:
-      - targets: ["localhost:3003"]
-    metrics_path: "/metrics"
+      - job_name: "node_app"
+        static_configs:
+          - targets: ["localhost:3003"]
+        metrics_path: "/metrics"
 
     Inicie o Prometheus:
 
@@ -246,22 +249,23 @@ prometheus --config.file=prometheus.yml
 
 
 
-
 npm start
 
     Inicie o Frontend:
 
 
+
 cd client
 npm start
 
-    Acesse a Aplicação:
+Acesse a Aplicação:
 
     Frontend: http://localhost:3003
     Backend: http://localhost:3003
-    Prometheus: http://localhost:9090 e http://localhost:9090/metrics 
-
+    Prometheus: http://localhost:9090 e http://localhost:9090/metrics
 
 Autor:
 
 Este projeto foi desenvolvido por Bruna Villanova da Silva.
+
+Esta documentação deve fornecer uma visão clara e completa do projeto, facilitando a compreensão e a configuração do ambiente de desenvolvimento.
