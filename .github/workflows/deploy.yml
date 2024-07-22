@@ -1,34 +1,56 @@
-name: Build and Deploy
+name: CI/CD Pipeline
 
 on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        # Obtém o código do repositório.
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+        # Configura a versão do Node.js para o projeto.
+
+      - name: Install dependencies
+        run: npm install
+        # Instala as dependências do projeto.
+
+      - name: Build project
+        run: npm run build
+        # Compila e constrói o projeto.
 
       - name: Build Docker image
         run: docker build -t myapp:${{ github.sha }} .
+        # Cria uma imagem Docker do projeto.
 
       - name: Push Docker image
         run: docker push myapp:${{ github.sha }}
+        # Envia a imagem Docker para o Docker Hub.
 
-      - name: Deploy
+      - name: Deploy to server
         run: |
           sshpass -p "${{ secrets.SERVER_PASSWORD }}" ssh -o StrictHostKeyChecking=no user@server << EOF
+            echo "Pulling Docker image..."
             docker pull myapp:${{ github.sha }}
+            echo "Stopping old container..."
             docker stop myapp || true
+            echo "Removing old container..."
             docker rm myapp || true
+            echo "Running new container..."
             docker run -d --name myapp -p 80:80 myapp:${{ github.sha }}
           EOF
         env:
           SERVER_PASSWORD: ${{ secrets.SERVER_PASSWORD }}
+        # Conecta-se ao servidor via SSH e implanta a nova versão da imagem Docker.
