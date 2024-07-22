@@ -1,5 +1,6 @@
 name: Build Project
 
+# Define os eventos que irão acionar o workflow
 on:
   push:
     branches:
@@ -9,29 +10,29 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # Especifica que o trabalho será executado em um ambiente Ubuntu
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v3  # Passo para fazer o checkout do código-fonte do repositório
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v3  # Passo para configurar o Node.js
         with:
-          node-version: '14'
+          node-version: '14'  # Especifica a versão do Node.js a ser usada
 
       - name: Install dependencies
-        run: npm install
+        run: npm install  # Passo para instalar as dependências do projeto
 
       - name: Build project
-        run: npm run build
+        run: npm run build  # Passo para construir o projeto
 
       - name: Login to Docker Hub
         run: |
-          echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+          echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin  # Passo para fazer login no Docker Hub usando segredos armazenados no GitHub
 
       - name: Build Docker image
-        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/myapp:${{ github.sha }} .
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/myapp:${{ github.sha }} .  # Passo para construir a imagem Docker do projeto
 
       - name: Push Docker image
-        run: docker push ${{ secrets.DOCKER_USERNAME }}/myapp:${{ github.sha }}
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/myapp:${{ github.sha }}  # Passo para enviar a imagem Docker para o Docker Hub
