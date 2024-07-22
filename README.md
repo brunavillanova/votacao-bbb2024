@@ -259,7 +259,8 @@ npm start
 
     Frontend: http://localhost:3003
     Backend: http://localhost:3003
-    Prometheus: http://localhost:9090
+    Prometheus: http://localhost:9090 e http://localhost:9090/metrics 
+
 
 Autor:
 
