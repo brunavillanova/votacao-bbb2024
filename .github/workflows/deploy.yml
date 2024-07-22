@@ -54,3 +54,6 @@ jobs:
             docker run -d --name myapp -p 80:80 brunavillanova1/myapp:${{ github.sha }}
           timeout: 300s  # Aumentar o tempo limite para 5 minutos
           debug: true  # Habilitar debugging adicional
+
+
+          
