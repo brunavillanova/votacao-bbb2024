@@ -24,6 +24,20 @@ header {
   height: -20px; /* Define a altura do cabeçalho */
 }
 
+/* Estilos para o rodapé da página */
+footer {
+  background-color: #663399; /* Define a cor de fundo do rodapé */
+  color: #fff; /* Define a cor do texto no rodapé */
+  padding: 10px 0; /* Define o espaçamento interno do rodapé */
+  text-align: center; /* Centraliza o texto */
+  font-size: 1rem; /* Define o tamanho da fonte */
+  font-weight: bold; /* Define o peso da fonte */
+  font-family: 'Arial', sans-serif; /* Define a fonte */
+  position: fixed; /* Define a posição fixa */
+  width: 100%; /* Define a largura total */
+  bottom: 0; /* Posiciona na parte inferior */
+}
+
 /* Container principal para centralização do conteúdo */
 .container {
   max-width: 960px; /* Define a largura máxima do container */
