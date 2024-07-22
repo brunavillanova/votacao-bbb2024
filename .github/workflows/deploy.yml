@@ -42,18 +42,12 @@ jobs:
       - name: Deploy to server
         run: |
           sshpass -p "${{ secrets.SERVER_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << EOF
-            echo "Pulling Docker image..."
             docker pull ${{ secrets.DOCKER_USERNAME }}/myapp:${{ github.sha }}
-            echo "Stopping old container..."
             docker stop myapp || true
-            echo "Removing old container..."
             docker rm myapp || true
-            echo "Running new container..."
             docker run -d --name myapp -p 80:80 ${{ secrets.DOCKER_USERNAME }}/myapp:${{ github.sha }}
           EOF
         env:
           SERVER_PASSWORD: ${{ secrets.SERVER_PASSWORD }}
-
-
 
           
