@@ -1,4 +1,4 @@
-name: Deploy to Server
+name: Build Project
 
 on:
   push:
@@ -35,14 +35,3 @@ jobs:
 
       - name: Push Docker image
         run: docker push ${{ secrets.DOCKER_USERNAME }}/myapp:${{ github.sha }}
-
-      - name: Deploy to server
-        env:
-          SERVER_PASSWORD: ${{ secrets.SERVER_PASSWORD }}
-        run: |
-          sshpass -p "$SERVER_PASSWORD" ssh -o StrictHostKeyChecking=no -p 22 ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << EOF
-          docker pull ${{ secrets.DOCKER_USERNAME }}/myapp:${{ github.sha }}
-          docker stop myapp || true
-          docker rm myapp || true
-          docker run -d --name myapp -p 80:80 ${{ secrets.DOCKER_USERNAME }}/myapp:${{ github.sha }}
-          EOF
