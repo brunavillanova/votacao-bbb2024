@@ -64,7 +64,9 @@ BBB24/
 
 Documentação das APIs
 
-A documentação das APIs também está disponível em: Postman Documentation
+A documentação das APIs também está disponível em:
+ [Postman Documentation](https://documenter.getpostman.com/view/32281538/2sA3kSnNty)
+
 Rota para Votar:
 
     Endpoint: /api/votar
@@ -194,10 +196,10 @@ cd <nome-do-repositorio>
 
     plaintext
 
-    REACT_APP_API_URL=http://localhost:3020
+    REACT_APP_API_URL=http://localhost:3003
     REACT_APP_RECAPTCHA_SITE_KEY=6LdnzwYqAAAAAD4LXiEamxfPLMk8g9Z10UcDWzea
     RECAPTCHA_SECRET_KEY=6LdnzwYqAAAAADWC_TNpVOrJHeb8PoOuuzYygIDN
-    PORT=3020
+    PORT=3003
     MONGO_URI=mongodb://localhost:27017/site
 
     Instale as dependências do backend:
@@ -241,7 +243,7 @@ scrape_configs:
 prometheus --config.file=prometheus.yml
 
     Inicie o Backend:
-    
+
 
 
 
@@ -255,8 +257,8 @@ npm start
 
     Acesse a Aplicação:
 
-    Frontend: http://localhost:3000
-    Backend: http://localhost:3020
+    Frontend: http://localhost:3003
+    Backend: http://localhost:3003
     Prometheus: http://localhost:9090
 
 Autor:
