@@ -40,14 +40,12 @@ jobs:
         run: sudo apt-get install sshpass -y
 
       - name: Deploy to server
+        env:
+          SERVER_PASSWORD: ${{ secrets.SERVER_PASSWORD }}
         run: |
-          sshpass -p "${{ secrets.SERVER_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << EOF
+          sshpass -p "$SERVER_PASSWORD" ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << EOF
             docker pull ${{ secrets.DOCKER_USERNAME }}/myapp:${{ github.sha }}
             docker stop myapp || true
             docker rm myapp || true
             docker run -d --name myapp -p 80:80 ${{ secrets.DOCKER_USERNAME }}/myapp:${{ github.sha }}
           EOF
-        env:
-          SERVER_PASSWORD: ${{ secrets.SERVER_PASSWORD }}
-
-          
