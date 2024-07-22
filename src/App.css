@@ -1,218 +1,232 @@
+/* Estilo principal para o aplicativo */
 .App {
   text-align: center;
 }
 
 /* Estilos gerais para o corpo da página */
 body {
-  font-family: 'Arial', sans-serif;
-  background-color: #f0f0f0;
-  margin: 0;
+  font-family: 'Arial', sans-serif; /* Define a fonte da página */
+  background-color: #f0f0f0; /* Define a cor de fundo */
+  margin: 0; /* Remove a margem padrão */
 }
 
 /* Estilos para o cabeçalho da página */
 header {
-  background-color: #663399;
-  color: #fff;
-  padding: 5px 0;
-  margin: 0;
-  text-align: center;
-  font-size: 1.2rem;
-  font-weight: bold;
-  font-family: 'Arial', sans-serif;
-  text-shadow: 2px 2px 2px #000;
-  height: -20px; /* Define a altura desejada */
+  background-color: #663399; /* Define a cor de fundo do cabeçalho */
+  color: #fff; /* Define a cor do texto no cabeçalho */
+  padding: 5px 0; /* Define o espaçamento interno do cabeçalho */
+  margin: 0; /* Remove a margem padrão */
+  text-align: center; /* Centraliza o texto */
+  font-size: 1.2rem; /* Define o tamanho da fonte */
+  font-weight: bold; /* Define o peso da fonte */
+  font-family: 'Arial', sans-serif; /* Define a fonte */
+  text-shadow: 2px 2px 2px #000; /* Adiciona sombra ao texto */
+  height: -20px; /* Define a altura do cabeçalho */
 }
 
 /* Container principal para centralização do conteúdo */
 .container {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 0 15px;
+  max-width: 960px; /* Define a largura máxima do container */
+  margin: 0 auto; /* Centraliza o container horizontalmente */
+  padding: 0 15px; /* Define o espaçamento interno do container */
 }
 
 /* Estilos para a barra de navegação */
 nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: flex; /* Define o layout flexível */
+  justify-content: space-between; /* Espaça os itens igualmente */
+  align-items: center; /* Alinha os itens ao centro verticalmente */
 }
 
 /* Estilos para o ícone de menu hambúrguer */
 .menu-icon {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 24px;
-  height: 18px;
-  cursor: pointer;
-  margin-top: 20px; /* Ajuste essa margem conforme necessário para baixar o ícone */
+  display: flex; /* Define o layout flexível */
+  flex-direction: column; /* Define a direção dos itens em coluna */
+  justify-content: space-between; /* Espaça os itens igualmente */
+  width: 24px; /* Define a largura do ícone */
+  height: 18px; /* Define a altura do ícone */
+  cursor: pointer; /* Define o cursor como pointer */
+  margin-top: 20px; /* Adiciona margem superior */
 }
 
+/* Estilos para as linhas do ícone de menu hambúrguer */
 .menu-line {
-  width: 100%;
-  height: 3px;
-  background-color: #fff;
+  width: 100%; /* Define a largura da linha */
+  height: 3px; /* Define a altura da linha */
+  background-color: #fff; /* Define a cor de fundo da linha */
 }
 
 /* Estilos para os botões do menu */
 .menu button {
-  background-color: transparent;
-  border: none;
-  color: #fff;
-  font-size: 1.2rem;
-  cursor: pointer;
+  background-color: transparent; /* Define o fundo transparente */
+  border: none; /* Remove a borda */
+  color: #fff; /* Define a cor do texto */
+  font-size: 1.2rem; /* Define o tamanho da fonte */
+  cursor: pointer; /* Define o cursor como pointer */
 }
 
+/* Estilos para a barra de busca */
 .search {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end; /* Puxa os itens para o final do container */
-  flex-grow: 1; /* Faz com que a barra de busca ocupe o espaço disponível */
+  display: flex; /* Define o layout flexível */
+  align-items: center; /* Alinha os itens ao centro verticalmente */
+  justify-content: flex-end; /* Alinha os itens ao final do container */
+  flex-grow: 1; /* Faz a barra de busca ocupar o espaço disponível */
 }
 
+/* Estilos para o campo de entrada da busca */
 .search input {
-  padding: 5px;
-  border: none;
-  border-radius: 50px;
-  background-color: #fff;
-  color: #663399;
-  margin-top: -20px;
+  padding: 5px; /* Define o espaçamento interno */
+  border: none; /* Remove a borda */
+  border-radius: 50px; /* Define bordas arredondadas */
+  background-color: #fff; /* Define a cor de fundo */
+  color: #663399; /* Define a cor do texto */
+  margin-top: -20px; /* Ajusta a margem superior */
   flex-shrink: 0; /* Impede que o input encolha */
 }
 
+/* Estilos para o botão da busca */
 .search button {
-  background-color: transparent;
-  border: none;
-  color: #fff;
-  cursor: pointer;
-  margin-left: 10px; /* Ajuste o espaçamento entre o input e o button conforme necessário */
-  margin-top: -15px;
+  background-color: transparent; /* Define o fundo transparente */
+  border: none; /* Remove a borda */
+  color: #fff; /* Define a cor do texto */
+  cursor: pointer; /* Define o cursor como pointer */
+  margin-left: 10px; /* Adiciona margem à esquerda */
+  margin-top: -15px; /* Ajusta a margem superior */
 }
 
-/* BBB 24 */
+/* Estilos para o logotipo do BBB 24 */
 .bbb-logo {
-  font-size: 2rem;
-  font-weight: bold;
-  line-height: 1; /* Ajuste conforme necessário para manter o texto visível */
-  margin-top: -30px; /* Ajuste negativo para subir o elemento */
-  text-align: left;
-  margin-left: -50px; /* Ajuste o valor conforme necessário para mover o elemento */
-  position: fixed; /* Alterado para fixo */
-  top: 20px; /* Ajuste conforme necessário */
+  font-size: 2rem; /* Define o tamanho da fonte */
+  font-weight: bold; /* Define o peso da fonte */
+  line-height: 1; /* Define a altura da linha */
+  margin-top: -30px; /* Ajusta a margem superior */
+  text-align: left; /* Alinha o texto à esquerda */
+  margin-left: -50px; /* Ajusta a margem esquerda */
+  position: fixed; /* Define a posição fixa */
+  top: 20px; /* Define a distância do topo */
   left: 50%; /* Centraliza horizontalmente */
   transform: translateX(-50%); /* Ajusta a posição para centralizar */
 }
 
-
 /* Estilos para a seção principal */
 main {
-  padding: 20px 0;
+  padding: 20px 0; /* Define o espaçamento interno superior e inferior */
 }
 
 /* Estilos para o título principal */
 h1 {
-  text-align: center;
-  margin-bottom: 15px;
+  text-align: center; /* Centraliza o texto */
+  margin-bottom: 15px; /* Adiciona margem inferior */
 }
 
 /* Estilos para parágrafos */
 p {
-  text-align: center;
-  margin-bottom: 20px;
+  text-align: center; /* Centraliza o texto */
+  margin-bottom: 20px; /* Adiciona margem inferior */
 }
 
 /* Estilos para as opções de votação */
 .voting-options {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: flex; /* Define o layout flexível */
+  flex-direction: column; /* Define a direção dos itens em coluna */
+  align-items: center; /* Alinha os itens ao centro */
 }
 
+/* Estilos para os parágrafos dentro das opções de votação */
 .voting-options p {
-  margin-bottom: 10px;
+  margin-bottom: 10px; /* Adiciona margem inferior */
 }
 
 /* Estilos para cada opção de votação */
 .option {
-  background-color: #fff;
-  border-radius: 10px;
-  padding: 20px;
-  margin-bottom: 15px;
-  width: 100%;
-  max-width: 400px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  background-color: #fff; /* Define a cor de fundo */
+  border-radius: 10px; /* Define bordas arredondadas */
+  padding: 20px; /* Define o espaçamento interno */
+  margin-bottom: 15px; /* Adiciona margem inferior */
+  width: 100%; /* Define a largura total */
+  max-width: 400px; /* Define a largura máxima */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Adiciona sombra */
+  display: flex; /* Define o layout flexível */
+  justify-content: space-between; /* Espaça os itens igualmente */
+  align-items: center; /* Alinha os itens ao centro verticalmente */
 }
 
+/* Estilos para as imagens dentro das opções de votação */
 .option img {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
+  width: 80px; /* Define a largura da imagem */
+  height: 80px; /* Define a altura da imagem */
+  border-radius: 50%; /* Define bordas arredondadas */
 }
 
+/* Estilos para os parágrafos dentro das opções de votação */
 .option p {
-  margin-right: 20px;
-  font-weight: bold;
+  margin-right: 20px; /* Adiciona margem à direita */
+  font-weight: bold; /* Define o peso da fonte */
 }
 
+/* Estilos para os botões dentro das opções de votação */
 .option button {
-  background-color: #663399;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  font-weight: bold;
-  cursor: pointer;
+  background-color: #663399; /* Define a cor de fundo */
+  color: #fff; /* Define a cor do texto */
+  border: none; /* Remove a borda */
+  border-radius: 5px; /* Define bordas arredondadas */
+  padding: 10px 20px; /* Define o espaçamento interno */
+  font-weight: bold; /* Define o peso da fonte */
+  cursor: pointer; /* Define o cursor como pointer */
 }
 
+/* Estilos para os botões ao passar o mouse */
 .option button:hover {
-  opacity: 0.8;
+  opacity: 0.8; /* Define a opacidade ao passar o mouse */
 }
 
 /* Estilos para o botão de retorno */
 .return-button {
-  margin-top: 20px; /* Espaçamento acima do botão */
+  margin-top: 20px; /* Adiciona margem superior */
 }
 
+/* Estilos para o botão de retorno */
 .return-button button {
-  background-color: #663399;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  font-weight: bold;
-  cursor: pointer;
+  background-color: #663399; /* Define a cor de fundo */
+  color: #fff; /* Define a cor do texto */
+  border: none; /* Remove a borda */
+  border-radius: 5px; /* Define bordas arredondadas */
+  padding: 10px 20px; /* Define o espaçamento interno */
+  font-weight: bold; /* Define o peso da fonte */
+  cursor: pointer; /* Define o cursor como pointer */
 }
 
+/* Estilos para os botões de retorno ao passar o mouse */
 .return-button button:hover {
-  background-color: #663399;
+  background-color: #663399; /* Define a cor de fundo */
 }
 
 /* Estilos para o panorama de votos */
 .panorama-votos h2 {
-  margin-top: 20px;
+  margin-top: 20px; /* Adiciona margem superior */
 }
 
+/* Estilos para a mensagem de erro */
 .error-message {
-  color: red;
-  font-weight: bold;
-  margin-top: 20px;
+  color: red; /* Define a cor do texto */
+  font-weight: bold; /* Define o peso da fonte */
+  margin-top: 20px; /* Adiciona margem superior */
 }
 
+/* Estilos para o feedback */
 .feedback {
-  margin-top: 20px;
-  font-size: 16px;
-  text-align: center;
+  margin-top: 20px; /* Adiciona margem superior */
+  font-size: 16px; /* Define o tamanho da fonte */
+  text-align: center; /* Centraliza o texto */
 }
 
+/* Estilos para feedbacks de erro */
 .feedback-error {
-  color: red;
-  font-weight: bold;
-  font-size: 18px;
-  background-color: #ffdddd;
-  padding: 10px;
-  border: 1px solid red;
-  border-radius: 5px;
+  color: red; /* Define a cor do texto */
+  font-weight: bold; /* Define o peso da fonte */
+  font-size: 18px; /* Define o tamanho da fonte */
+  background-color: #ffdddd; /* Define a cor de fundo */
+  padding: 10px; /* Define o espaçamento interno */
+  border: 1px solid red; /* Define a borda */
+  border-radius: 5px; /* Define bordas arredondadas */
 }
