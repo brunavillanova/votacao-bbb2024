@@ -1,71 +1,264 @@
-# Getting Started with Create React App
+DOCUMENTAÇÃO DO PROJETO DE VOTAÇÃO
+Índice:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+    1. Documentação do Projeto
+    2. Documentação das APIs
+    3. Documentação de Arquitetura
+    4. Como Subir uma Cópia do Ambiente Localmente
+    5. Autor
 
-## Available Scripts
+Documentação do Projeto
 
-In the project directory, you can run:
+* Introdução:
+Este projeto é um sistema de votação para o Big Brother Brasil (BBB 24), onde os usuários podem votar nos candidatos Beatriz ou Juliette. O sistema utiliza o reCAPTCHA do Google para prevenir votos automáticos e Prometheus para monitoramento de métricas.
+Tecnologias Utilizadas:
+Backend:
+
+    Node.js
+    Express
+    MongoDB
+    Mongoose
+    Axios
+    Helmet
+    CORS
+    Rate Limit
+    Morgan
+    Prometheus Client
+
+Frontend:
+
+    React
+    Axios
+    reCAPTCHA
+
+Monitoramento:
+
+    Prometheus
+
+Estrutura do Projeto
 
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+BBB24/
+├── node_modules/
+├── public/
+│   ├── bbb24.png
+│   ├── beatriz.jpg
+│   ├── index.html
+│   ├── juliette.jpg
+│   ├── manifest.json
+│   └── robots.txt
+├── src/
+│   ├── App.css
+│   ├── App.js
+│   ├── index.css
+│   ├── index.js
+│   └── server.js
+├── .env
+├── .gitignore
+├── metrics.md
+├── package-lock.json
+├── package.json
+├── prometheus.yml
+└── README.md
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Documentação das APIs
 
-### `npm test`
+A documentação das APIs também está disponível em: Postman Documentation
+Rota para Votar:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+    Endpoint: /api/votar
+    Método: POST
+    Descrição: Registra um voto para um candidato.
+    Corpo da Requisição:
 
-### `npm run build`
+{
+  "nomeCandidato": "Beatriz",
+  "captchaToken": "TOKEN_DO_RECAPTCHA"
+}
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    Resposta de Sucesso:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+{
+  "success": true,
+  "message": "Voto recebido com sucesso!",
+  "panorama": {
+    "totalVotos": 100,
+    "percentBeatriz": 60.00,
+    "percentJuliette": 40.00
+  }
+}
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    Resposta de Erro:
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+{
+  "success": false,
+  "message": "Falha na verificação do reCAPTCHA. Tente novamente."
+}
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Rota para Estatísticas de Votos:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+    Endpoint: /api/estatisticas
+    Método: GET
+    Descrição: Obtém as estatísticas de votos.
+    Resposta de Sucesso:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+{
+  "success": true,
+  "panorama": {
+    "totalVotos": 100,
+    "votosPorParticipante": {
+      "Beatriz": 60,
+      "Juliette": 40
+    },
+    "votosPorHora": [...]
+  }
+}
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+    Resposta de Erro:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+{
+  "success": false,
+  "message": "Erro ao obter estatísticas. Tente novamente."
+}
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Rota para Métricas:
 
-### Analyzing the Bundle Size
+    Endpoint: /metrics
+    Método: GET
+    Descrição: Exibe as métricas do Prometheus.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Documentação de Arquitetura
 
-### Making a Progressive Web App
+* Arquitetura do Sistema:
+O sistema de votação consiste em um frontend React que interage com um backend Node.js e Express. O backend se comunica com um banco de dados MongoDB para armazenar votos e utiliza o Prometheus para monitoramento de métricas.
+Componentes Principais
+Frontend:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+    Desenvolvido em React.
+    Utiliza Axios para fazer chamadas HTTP ao backend.
+    Integração com Google reCAPTCHA para validação de votos.
 
-### Advanced Configuration
+Backend:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+    Desenvolvido em Node.js com Express.
+    Conexão com MongoDB utilizando Mongoose.
+    Implementa rotas para registrar votos e obter estatísticas.
+    Middleware de segurança e monitoramento (Helmet, CORS, Rate Limit, Morgan).
+    Exposição de métricas para Prometheus.
 
-### Deployment
+Monitoramento:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+    Configuração do Prometheus para coletar métricas de performance do backend.
+    Métricas expostas na rota /metrics.
 
-### `npm run build` fails to minify
+Diagrama de Arquitetura:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
++------------+      +-------------+       +---------------+       +------------+
+|  Frontend  | ---> |  Backend    | --->  |  MongoDB      |       | Prometheus |
+|  (React)   |      |  (Express)  |       |  (Database)   |       |(Monitoring)|
++------------+      +-------------+       +---------------+       +------------+
+    |                    |                         |
+    |                    |                         |
+    |                    +-------------------------+
+    |                              |
+    |                              v
+    +-----------------> reCAPTCHA Validation
+
+
+
+Como Subir uma Cópia do Ambiente Localmente
+Pré-requisitos
+
+    Node.js e npm
+    MongoDB
+    Prometheus
+
+Passos para Configurar e Executar o Projeto
+
+    Clone o repositório:
+
+bash
+
+git clone <url-do-repositorio>
+cd <nome-do-repositorio>
+
+    Configuração do Backend:
+
+    Crie um arquivo .env no diretório raiz com as seguintes variáveis:
+
+    plaintext
+
+    REACT_APP_API_URL=http://localhost:3020
+    REACT_APP_RECAPTCHA_SITE_KEY=6LdnzwYqAAAAAD4LXiEamxfPLMk8g9Z10UcDWzea
+    RECAPTCHA_SECRET_KEY=6LdnzwYqAAAAADWC_TNpVOrJHeb8PoOuuzYygIDN
+    PORT=3020
+    MONGO_URI=mongodb://localhost:27017/site
+
+    Instale as dependências do backend:
+
+
+npm install
+
+    Configuração do Frontend:
+
+    Navegue até o diretório client e crie um arquivo .env com as mesmas variáveis do backend. Instale as dependências do frontend:
+
+
+
+cd client
+npm install
+
+    Configuração do Prometheus:
+
+    Crie um arquivo prometheus.yml com a seguinte configuração:
+
+
+
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["localhost:9090"]
+
+  - job_name: "node_app"
+    static_configs:
+      - targets: ["localhost:3003"]
+    metrics_path: "/metrics"
+
+    Inicie o Prometheus:
+
+
+
+prometheus --config.file=prometheus.yml
+
+    Inicie o Backend:
+    
+
+
+
+npm start
+
+    Inicie o Frontend:
+
+
+cd client
+npm start
+
+    Acesse a Aplicação:
+
+    Frontend: http://localhost:3000
+    Backend: http://localhost:3020
+    Prometheus: http://localhost:9090
+
+Autor:
+
+Este projeto foi desenvolvido por Bruna Villanova da Silva.
