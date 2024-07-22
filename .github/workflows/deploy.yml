@@ -26,25 +26,31 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Build Docker image
-        run: docker build -t brunavillanova1/myapp:${{ github.sha }} .
-
       - name: Login to Docker Hub
         run: |
           echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
+      - name: Build Docker image
+        run: docker build -t brunavillanova1/myapp:${{ github.sha }} .
+
       - name: Push Docker image
         run: docker push brunavillanova1/myapp:${{ github.sha }}
 
-      - name: Deploy to server via SSH
+      - name: Deploy to server
         uses: appleboy/ssh-action@v0.1.4
         with:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
-          port: 2222  # Atualize para a porta SSH configurada
+          port: 22
           script: |
+            echo "Pulling Docker image..."
             docker pull brunavillanova1/myapp:${{ github.sha }}
+            echo "Stopping old container..."
             docker stop myapp || true
+            echo "Removing old container..."
             docker rm myapp || true
-            docker run -d --name myapp -p 2222:22 brunavillanova1/myapp:${{ github.sha }}
+            echo "Running new container..."
+            docker run -d --name myapp -p 80:80 brunavillanova1/myapp:${{ github.sha }}
+          timeout: 300s  # Aumentar o tempo limite para 5 minutos
+          debug: true  # Habilitar debugging adicional
