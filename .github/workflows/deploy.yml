@@ -14,38 +14,30 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-        # Obtém o código do repositório.
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '14'
-        # Configura a versão do Node.js para o projeto.
 
       - name: Install dependencies
         run: npm install
-        # Instala as dependências do projeto.
 
       - name: Build project
         run: npm run build
-        # Compila e constrói o projeto.
 
       - name: Login to Docker Hub
         run: |
           echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
-        # Faz login no Docker Hub usando credenciais seguras.
 
       - name: Build Docker image
         run: docker build -t ${{ secrets.DOCKER_USERNAME }}/myapp:${{ github.sha }} .
-        # Cria uma imagem Docker do projeto.
 
       - name: Push Docker image
         run: docker push ${{ secrets.DOCKER_USERNAME }}/myapp:${{ github.sha }}
-        # Envia a imagem Docker para o Docker Hub.
 
       - name: Install sshpass
         run: sudo apt-get install sshpass -y
-        # Instala o sshpass para permitir autenticação por senha via SSH.
 
       - name: Deploy to server
         run: |
@@ -61,4 +53,3 @@ jobs:
           EOF
         env:
           SERVER_PASSWORD: ${{ secrets.SERVER_PASSWORD }}
-        # Conecta-se ao servidor via SSH e implanta a nova versão da imagem Docker.
