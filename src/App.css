@@ -85,17 +85,21 @@ nav {
   align-items: center; /* Alinha os itens ao centro verticalmente */
   justify-content: flex-end; /* Alinha os itens ao final do container */
   flex-grow: 1; /* Faz a barra de busca ocupar o espaço disponível */
+  width: 20%; /* Diminua a largura do input */
 }
 
 /* Estilos para o campo de entrada da busca */
 .search input {
-  padding: 5px; /* Define o espaçamento interno */
+  padding: 6px; /* Define o espaçamento interno */
   border: none; /* Remove a borda */
-  border-radius: 50px; /* Define bordas arredondadas */
+  border-radius: 80px; /* Define bordas arredondadas */
   background-color: #fff; /* Define a cor de fundo */
   color: #663399; /* Define a cor do texto */
   margin-top: -20px; /* Ajusta a margem superior */
   flex-shrink: 0; /* Impede que o input encolha */
+  width: 21%; /* Diminua a largura do input */
+ 
+  
 }
 
 /* Estilos para o botão da busca */
@@ -104,22 +108,23 @@ nav {
   border: none; /* Remove a borda */
   color: #fff; /* Define a cor do texto */
   cursor: pointer; /* Define o cursor como pointer */
-  margin-left: 10px; /* Adiciona margem à esquerda */
+  margin-left: -30px; /* Adiciona margem à esquerda */
   margin-top: -15px; /* Ajusta a margem superior */
+  
 }
 
 /* Estilos para o logotipo do BBB 24 */
 .bbb-logo {
-  font-size: 2rem; /* Define o tamanho da fonte */
-  font-weight: bold; /* Define o peso da fonte */
-  line-height: 1; /* Define a altura da linha */
-  margin-top: -30px; /* Ajusta a margem superior */
-  text-align: left; /* Alinha o texto à esquerda */
-  margin-left: -50px; /* Ajusta a margem esquerda */
-  position: fixed; /* Define a posição fixa */
+  font-size: 1.9rem; /* Ajuste para usar ponto em vez de vírgula */
+  font-weight: bold;
+  line-height: 3;
+  margin-top: -50px;
+  text-align: left;
+  margin-left: -20px; /* Ajusta a margem à esquerda */
+  position: absolute; /* Muda para posição absoluta */
   top: 20px; /* Define a distância do topo */
   left: 50%; /* Centraliza horizontalmente */
-  transform: translateX(-50%); /* Ajusta a posição para centralizar */
+  transform: translateX(-60%); /* Ajusta a posição para centralizar */
 }
 
 /* Estilos para a seção principal */
@@ -187,6 +192,7 @@ p {
   padding: 10px 20px; /* Define o espaçamento interno */
   font-weight: bold; /* Define o peso da fonte */
   cursor: pointer; /* Define o cursor como pointer */
+  margin-left: 10px; /* Adicione margem à esquerda */
 }
 
 /* Estilos para os botões ao passar o mouse */
