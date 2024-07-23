@@ -58,9 +58,10 @@ nav {
   flex-direction: column; /* Define a direção dos itens em coluna */
   justify-content: space-between; /* Espaça os itens igualmente */
   width: 24px; /* Define a largura do ícone */
-  height: 18px; /* Define a altura do ícone */
+  height: 20px; /* Define a altura do ícone */
   cursor: pointer; /* Define o cursor como pointer */
   margin-top: 20px; /* Adiciona margem superior */
+  transform: translateY(5px); /* Move o ícone para baixo */
 }
 
 /* Estilos para as linhas do ícone de menu hambúrguer */
@@ -96,6 +97,7 @@ nav {
   color: #663399; /* Define a cor do texto */
   margin-top: -20px; /* Ajusta a margem superior */
   flex-shrink: 0; /* Impede que o input encolha */
+  width: 85px; /* Define a largura do input */
 }
 
 /* Estilos para o botão da busca */
@@ -116,7 +118,7 @@ nav {
   line-height: 3;
   margin-top: -30px;
   text-align: left;
-  margin-left: -20px; /* Ajusta a margem à esquerda */
+  margin-left: -25px; /* Ajusta a margem à esquerda */
   position: absolute; /* Muda para posição absoluta */
   top: -5px; /* Define a distância do topo */
   left: 50%; /* Centraliza horizontalmente */
