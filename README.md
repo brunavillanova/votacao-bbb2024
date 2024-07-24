@@ -38,7 +38,7 @@ Monitoramento:
 Estrutura do Projeto
 
 
-BBB24/
+MY-NEW-APP
 ├── node_modules/
 ├── public/
 │   ├── beatriz.jpg
