@@ -37,13 +37,13 @@ Monitoramento:
 
 Estrutura do Projeto
 
-plaintext
 
 BBB24/
 ├── node_modules/
 ├── public/
-│   ├── bbb24.png
 │   ├── beatriz.jpg
+│   ├── favicon.ico
+│   ├── icon.ico
 │   ├── index.html
 │   ├── juliette.jpg
 │   ├── manifest.json
@@ -56,6 +56,9 @@ BBB24/
 │   └── server.js
 ├── .env
 ├── .gitignore
+├── babel.config.js
+├── deploy_exporter.py
+├── Dockerfile
 ├── metrics.md
 ├── package-lock.json
 ├── package.json
@@ -188,7 +191,7 @@ Passos para Configurar e Executar o Projeto
 
     Clone o repositório:
 
-bash
+
 
 git clone <url-do-repositorio>
 cd <nome-do-repositorio>
@@ -196,7 +199,7 @@ cd <nome-do-repositorio>
     Configuração do Backend:
         Crie um arquivo .env no diretório raiz com as seguintes variáveis:
 
-    plaintext
+ 
 
     REACT_APP_API_URL=http://localhost:3003
     REACT_APP_RECAPTCHA_SITE_KEY=6LdnzwYqAAAAAD4LXiEamxfPLMk8g9Z10UcDWzea
@@ -223,7 +226,6 @@ Configuração do Prometheus:
 
     Crie um arquivo prometheus.yml com a seguinte configuração:
 
-plaintext
 
     global:
       scrape_interval: 15s
