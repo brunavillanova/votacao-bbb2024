@@ -1,6 +1,6 @@
 DOCUMENTAÇÃO DO PROJETO DE VOTAÇÃO
 
-![Interface do Projeto](./public/bbb24.png)
+![Interface do Projeto](./public/bbb.png)
 
 Índice:
 
@@ -44,7 +44,7 @@ Estrutura do Projeto
 MY-NEW-APP
 ├── node_modules/
 ├── public/
-│   ├── bbb24.png
+│   ├── bbb.png
 │   ├── beatriz.jpg
 │   ├── favicon.ico
 │   ├── icon.ico
