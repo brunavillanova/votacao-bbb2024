@@ -11,3 +11,18 @@ module.exports = {
     '@babel/preset-react'
   ]
 };
+
+
+// @babel/preset-env:
+
+//Esse preset permite que você use as funcionalidades mais recentes do JavaScript sem se preocupar 
+//com a compatibilidade com versões antigas dos navegadores. 
+//Ele faz isso convertendo o código moderno em uma versão que funciona em navegadores mais antigos 
+//com base no ambiente de destino que você especificar.
+
+
+
+// @babel/preset-react:
+
+// Esse preset é usado para transformar o código JSX (JavaScript XML) em JavaScript padrão que os navegadores podem entender. 
+// JSX é uma sintaxe usada pelo React para descrever a interface do usuário.
