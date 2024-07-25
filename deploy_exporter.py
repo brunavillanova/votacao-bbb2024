@@ -1,6 +1,10 @@
 # Importa as bibliotecas necessárias
-from flask import Flask, Response
+
+# para criar a aplicação web.
+from flask import Flask, Response 
+# para expor métricas para o Prometheus.
 import prometheus_client
+# para criar uma métrica do tipo Gauge.
 from prometheus_client import Gauge
 
 # Cria uma instância do Flask
