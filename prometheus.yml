@@ -1,5 +1,7 @@
 global:
+// Define a frequência com que o Prometheus coleta métricas de todos os targets configurados. No caso, a cada 15 segundos.
   scrape_interval: 15s
+  Define a frequência com que o Prometheus avalia as regras. Também está configurado para a cada 15 segundos.
   evaluation_interval: 15s
 
 scrape_configs:
