@@ -10,7 +10,7 @@ DOCUMENTAÇÃO DO PROJETO DE VOTAÇÃO
     4. Como Subir uma Cópia do Ambiente Localmente
     5. Autor
 
-1 . Documentação do Projeto
+1. Documentação do Projeto
 Introdução:
 
 Este projeto é um sistema de votação para o Big Brother Brasil (BBB 24), onde os usuários podem votar nos candidatos Beatriz ou Juliette. O sistema utiliza o reCAPTCHA do Google para prevenir votos automáticos e Prometheus para monitoramento de métricas.
@@ -39,6 +39,7 @@ Monitoramento:
     Prometheus
 
 Estrutura do Projeto
+
 
 
 MY-NEW-APP
@@ -71,18 +72,17 @@ MY-NEW-APP
 ├── prometheus.yml
 └── README.md
 
-2 . Documentação das APIs
-
-A documentação das APIs também está disponível em: https://documenter.getpostman.com/view/32281538/2sA3kSnNty
+2. Documentação das APIs
+A documentação das APIs também está disponível em: Postman Documentation
 Rota para Votar:
 
-Endpoint: http://localhost:3003/api/votar
-Método: POST
-Descrição: Registra um voto para um candidato.
+    Endpoint: http://localhost:3003/api/votar
+    Método: POST
+    Descrição: Registra um voto para um candidato.
 
 Corpo da Requisição:
 
-
+json
 
 {
   "nomeCandidato": "Beatriz",
@@ -91,7 +91,7 @@ Corpo da Requisição:
 
 Resposta de Sucesso:
 
-
+json
 
 {
   "success": true,
@@ -105,7 +105,7 @@ Resposta de Sucesso:
 
 Resposta de Erro:
 
-
+json
 
 {
   "success": false,
@@ -114,12 +114,13 @@ Resposta de Erro:
 
 Rota para Estatísticas de Votos:
 
-Endpoint: http://localhost:3003/api/estatisticas
-Método: GET
-Descrição: Obtém as estatísticas de votos.
+    Endpoint: http://localhost:3003/api/estatisticas
+    Método: GET
+    Descrição: Obtém as estatísticas de votos.
 
 Resposta de Sucesso:
 
+json
 
 {
   "success": true,
@@ -135,7 +136,7 @@ Resposta de Sucesso:
 
 Resposta de Erro:
 
-
+json
 
 {
   "success": false,
@@ -144,14 +145,15 @@ Resposta de Erro:
 
 Rota para Métricas:
 
-Endpoint: http://localhost:9090/metrics
-Método: GET
-Descrição: Exibe as métricas do Prometheus.
-Documentação de Arquitetura
+    Endpoint: http://localhost:9090/metrics
+    Método: GET
+    Descrição: Exibe as métricas do Prometheus.
+
+3. Documentação de Arquitetura
 Arquitetura do Sistema:
 
 O sistema de votação consiste em um frontend React que interage com um backend Node.js e Express. O backend se comunica com um banco de dados MongoDB para armazenar votos e utiliza o Prometheus para monitoramento de métricas.
-Componentes Principais
+Componentes Principais:
 Frontend:
 
     Desenvolvido em React.
@@ -174,7 +176,6 @@ Monitoramento:
 Diagrama de Arquitetura:
 
 
-
 +------------+      +-------------+       +---------------+       +------------+
 |  Frontend  | ---> |  Backend    | --->  |  MongoDB      |       | Prometheus |
 |  (React)   |      |  (Express)  |       |  (Database)   |       |(Monitoring)|
@@ -186,14 +187,14 @@ Diagrama de Arquitetura:
     |                              v
     +-----------------> reCAPTCHA Validation
 
-Como Subir uma Cópia do Ambiente Localmente
-Pré-requisitos
+4. Como Subir uma Cópia do Ambiente Localmente
+Pré-requisitos:
 
     Node.js e npm
     MongoDB
     Prometheus
 
-Passos para Configurar e Executar o Projeto
+Passos para Configurar e Executar o Projeto:
 
     Clone o repositório:
 
@@ -202,16 +203,17 @@ Passos para Configurar e Executar o Projeto
 git clone <url-do-repositorio>
 cd <nome-do-repositorio>
 
-    Configuração do Backend:
-        Crie um arquivo .env no diretório raiz com as seguintes variáveis:
+Configuração do Backend:
 
- 
+    Crie um arquivo .env no diretório raiz com as seguintes variáveis:
 
-    REACT_APP_API_URL=http://localhost:3003
-    REACT_APP_RECAPTCHA_SITE_KEY=6LdnzwYqAAAAAD4LXiEamxfPLMk8g9Z10UcDWzea
-    RECAPTCHA_SECRET_KEY=6LdnzwYqAAAAADWC_TNpVOrJHeb8PoOuuzYygIDN
-    PORT=3003
-    MONGO_URI=mongodb://localhost:27017/site
+.env
+
+REACT_APP_API_URL=http://localhost:3003
+REACT_APP_RECAPTCHA_SITE_KEY=6LdnzwYqAAAAAD4LXiEamxfPLMk8g9Z10UcDWzea
+RECAPTCHA_SECRET_KEY=6LdnzwYqAAAAADWC_TNpVOrJHeb8PoOuuzYygIDN
+PORT=3003
+MONGO_URI=mongodb://localhost:27017/site
 
     Instale as dependências do backend:
 
@@ -219,9 +221,10 @@ cd <nome-do-repositorio>
 
 npm install
 
-    Configuração do Frontend:
-        Navegue até o diretório client e crie um arquivo .env com as mesmas variáveis do backend.
-        Instale as dependências do frontend:
+Configuração do Frontend:
+
+    Navegue até o diretório client e crie um arquivo .env com as mesmas variáveis do backend.
+    Instale as dependências do frontend:
 
 
 
@@ -233,19 +236,20 @@ Configuração do Prometheus:
     Crie um arquivo prometheus.yml com a seguinte configuração:
 
 
-    global:
-      scrape_interval: 15s
-      evaluation_interval: 15s
 
-    scrape_configs:
-      - job_name: "prometheus"
-        static_configs:
-          - targets: ["localhost:9090"]
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
 
-      - job_name: "node_app"
-        static_configs:
-          - targets: ["localhost:3003"]
-        metrics_path: "/metrics"
+scrape_configs:
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["localhost:9090"]
+
+  - job_name: "node_app"
+    static_configs:
+      - targets: ["localhost:3003"]
+    metrics_path: "/metrics"
 
     Inicie o Prometheus:
 
@@ -253,18 +257,18 @@ Configuração do Prometheus:
 
 prometheus --config.file=prometheus.yml
 
-    Inicie o Backend:
+Inicie o Backend:
 
 
 
 npm start
 
-    Inicie o Frontend:
+Inicie o Frontend:
 
 
 
-cd client
-npm start
+    cd client
+    npm start
 
 Acesse a Aplicação:
 
@@ -272,7 +276,7 @@ Acesse a Aplicação:
     Backend: http://localhost:3003
     Prometheus: http://localhost:9090 e http://localhost:9090/metrics
 
-Autor:
+5. Autor:
 
 Este projeto foi desenvolvido por Bruna Villanova da Silva.
 
