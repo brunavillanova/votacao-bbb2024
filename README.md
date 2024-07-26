@@ -73,7 +73,7 @@ MY-NEW-APP
 └── README.md
 
 2. Documentação das APIs
-A documentação das APIs também está disponível em: Postman Documentation
+A documentação das APIs também está disponível em: https://documenter.getpostman.com/view/32281538/2sA3kSnNty
 Rota para Votar:
 
     Endpoint: http://localhost:3003/api/votar
