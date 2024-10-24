@@ -15,6 +15,8 @@ const promClient = require('prom-client');
 const app = express();
 const PORT = process.env.PORT || 3003; // Usando a porta 3003
 
+
+
 console.log('RECAPTCHA_SECRET_KEY:', process.env.RECAPTCHA_SECRET_KEY);
 console.log('MONGO_URI:', process.env.MONGO_URI);
 
@@ -45,10 +47,14 @@ app.get('/metrics', async (req, res) => {
 // Middleware de segurança e configuração do CORS
 app.use(helmet());
 app.use(cors({
-  origin: '*',
+  origin: 'http://localhost:3003',
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
+// Habilitar CORS para todas as origens (ou restrinja conforme necessário)
+app.use(cors());
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -214,10 +220,10 @@ mongoose.connect(process.env.MONGO_URI)
   .catch(err => console.error('Erro de conexão com o MongoDB:', err));
 
 // Servir arquivos estáticos do frontend
-app.use(express.static(path.join(__dirname, '../client/build')));
+app.use(express.static(path.join(__dirname, 'build')));
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
 // Inicia o servidor
