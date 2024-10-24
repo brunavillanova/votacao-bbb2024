@@ -254,17 +254,19 @@ scrape_configs:
     Inicie o Prometheus:
 
 
+Pasta:  C:\Users\bruna.villanova\Downloads\APLICATIVOS\prometheus-2.53.0.windows-amd64\prometheus-2.53.0.windows-amd64
 
 prometheus --config.file=prometheus.yml
 
 Inicie o Backend:
 
+   (node server.js)   não esquecer de roda na pasta SRC
 
-
-npm start
 
 Inicie o Frontend:
 
+
+    (npm start)    roda na pasta my-new-app 
 
 
     cd client
